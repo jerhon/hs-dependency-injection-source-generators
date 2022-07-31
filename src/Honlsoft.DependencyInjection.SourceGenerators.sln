@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honlsoft.DependencyInjection.SourceGenerators", "Honlsoft.DependencyInjection.SourceGenerators\Honlsoft.DependencyInjection.SourceGenerators.csproj", "{76063ED6-68D5-45F3-90C9-2F7B2F1FDEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honlsoft.DependencyInjection.SourceGenerators.Tests", "Honlsoft.DependencyInjection.SourceGenerators.Tests\Honlsoft.DependencyInjection.SourceGenerators.Tests.csproj", "{FF0A7CC9-DE99-44E3-B98F-607968EABAFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76063ED6-68D5-45F3-90C9-2F7B2F1FDEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76063ED6-68D5-45F3-90C9-2F7B2F1FDEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76063ED6-68D5-45F3-90C9-2F7B2F1FDEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76063ED6-68D5-45F3-90C9-2F7B2F1FDEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0A7CC9-DE99-44E3-B98F-607968EABAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0A7CC9-DE99-44E3-B98F-607968EABAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0A7CC9-DE99-44E3-B98F-607968EABAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0A7CC9-DE99-44E3-B98F-607968EABAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
