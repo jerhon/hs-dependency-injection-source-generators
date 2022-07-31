@@ -51,7 +51,6 @@ I want to use the Factory pattern in order to create a class which has some cons
 
 ## Problems
 
-* While my source generator is working when I do a full compile, when I edit in visual studio and/or Rider I will start getting errors that the interface and class I have defined for the .
 * Debugging is clunky, and I haven't found an easy way to output log/debug/trace information from my source generator.
 
 ### ISourceGenerator should not have shared variables
@@ -75,4 +74,6 @@ If I can figure out the problem above, there are several todos:
 * Need to deal with namespaces on the factory classes to match the class better.
   * deal with nested classes
   * deal with nested namespaces
-
+* Potentially use the semantic model as a better substitute for the direct syntax tree.
+* Add a LOT more tests.
+* Add errors around situations where the syntax is not supported.
