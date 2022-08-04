@@ -1,14 +1,36 @@
 ﻿# Honlsoft.DependencyInjection.SourceGenerators
 
-This is a project to test out creating a source generator in Roslyn.
-Thhis project was meant to auto generate Factories for classes with constructors attributed with a `[Factory]` attribute.
-The source generator would auto implement this Factory.
+This is a project to test out creating a source generator(s) in Roslyn.
 
 
-## Example
+## Constructor Source Generator
 
+
+```csharp
+public partial class MyClass {
+
+    [Inject] private readonly string _paramter1;
+    
+    [Inject] private readonly string _paramter2;
+
+}
+```
+
+This will create a constructor matching the following pattern.
+
+```csharp
+public MyClass(string _parameter1, string _parameter2) {
+    this._parameter1 = _parameter1;
+    this._parameter2 = _parameter2;
+}
+```
+
+
+## Factory Source Generator
+
+This project was meant to auto generate Factories for classes with constructors attributed with a `[Factory]` attribute.
+The source generator would auto implement a Factory for the class.
 I have a unit test that demonstrates this.
-
 
 ```csharp
 [Test]
@@ -49,6 +71,40 @@ public class InstanceClass {
 I want to use the Factory pattern in order to create a class which has some constructor parameters which are dependencies that would be injected by say an DI container, and the others are not available until runtime.
 
 
+## Interface Source Generator (TBD)
+
+This is TBD, but would generate an interface based off the class.  Useful for DI and unit testing.
+
+```csharp
+[Interface]
+public class MyClass {
+
+    [Interface]
+    public void Method() {
+    }
+    
+    [Interface]
+    public void Method2() {
+    }
+}
+```
+
+
+```csharp
+public interface IMyClass {
+    public void Method();
+    public void Method2();
+}
+```
+
+Can then DI in the interface, and use it for mocking while unit testing.
+
+## Combine `[Inject]` and `[Factory]` at the class level (TBD)
+
+Add the ability to auto generate a factory when auto generating a constructor.
+With optional parameters provided.  Allow combining the interface as well.
+
+
 ## Problems
 
 * Debugging is clunky, and I haven't found an easy way to output log/debug/trace information from my source generator.
@@ -70,10 +126,5 @@ This ca
 
 If I can figure out the problem above, there are several todos:
 * Cleanup - this was a try it out kind of project, and the code base could be a little cleaner
-* Need to copy namespaces over for parameters that are used in the generated files.  If a parameter comes from another namespace a using directive is required.
-* Need to deal with namespaces on the factory classes to match the class better.
-  * deal with nested classes
-  * deal with nested namespaces
-* Potentially use the semantic model as a better substitute for the direct syntax tree.
 * Add a LOT more tests.
 * Add errors around situations where the syntax is not supported.
