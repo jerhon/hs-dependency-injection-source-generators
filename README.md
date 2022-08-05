@@ -139,11 +139,3 @@ The intent is that every time execute is run, it should not share state in the c
 ### Bad Documentation
 
 There's really only a page or two in the official docs, and certain key  markdown pages that are linked to are incomplete or weren't revisited after implementation.
-
-
-## TODO
-
-If I can figure out the problem above, there are several todos:
-* Cleanup - this was a try it out kind of project, and the code base could be a little cleaner
-* Add a LOT more tests.
-* Add errors around situations where the syntax is not supported.
