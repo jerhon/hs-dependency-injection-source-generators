@@ -1,10 +1,13 @@
 ﻿# Honlsoft.DependencyInjection.SourceGenerators
 
 This is a project to test out creating a source generator(s) in Roslyn.
-
+It's a WIP and more for personal learning/ideas than for production code right now.
+If I decide to iterate on it further, it may become more stable.
 
 ## Constructor Source Generator
 
+Decorate a public partial class with the `[Inject]` attribute on fields to create a constructor which will expose them.
+This avoids having to write a constructor in simple situations where it's no more than assigning to a field.
 
 ```csharp
 public partial class MyClass {
@@ -16,7 +19,7 @@ public partial class MyClass {
 }
 ```
 
-This will create a constructor matching the following pattern.
+The constructor should look something like this:
 
 ```csharp
 public MyClass(string _parameter1, string _parameter2) {
@@ -25,6 +28,7 @@ public MyClass(string _parameter1, string _parameter2) {
 }
 ```
 
+Doesn't support use cases such as inheritance.
 
 ## Factory Source Generator
 
@@ -105,22 +109,37 @@ Add the ability to auto generate a factory when auto generating a constructor.
 With optional parameters provided.  Allow combining the interface as well.
 
 
-## Problems
+## Lessons learned:
 
-* Debugging is clunky, and I haven't found an easy way to output log/debug/trace information from my source generator.
+Just my personal experience trying to build them.
+
+### Debugging
+
+It's clunky, visual studio requires a reload after each change to debug.
+
+### Rider is better for development
+
+It seems like Visual Studio was keeping a reference to my old source generator after recompile.
+Had to restart visual studio sometimes for changes to take effect.
+I had better luck developing in Rider.
 
 ### ISourceGenerator should not have shared variables
 
-Originally I had limited success.
+Originally, I had limited success.
 
 While I was able to generate a factory, the editing experience in Rider and Visual Studio isn't working to my satisfaction.
 Full builds and rebuilds of the solution would work fine.  However, editing in the project would cause the generated source to be lost and I would start getting errors that the generated factories don't exist.
 
-These could be issues with my source generator, but I need to investigate it further.
-
 Reading through this a common problem is having a shared field or property across execution runs: https://github.com/dotnet/roslyn/issues/49249
-The intent is that every time execute is run, it should not share state as it can be run multi-threaded!
-This ca
+The intent is that every time execute is run, it should not share state in the class as it's
+
+### ISyntaxReciever vs ISyntaxContextReceiver
+
+
+### Bad Documentation
+
+There's really only a page or two in the official docs, and certain key  markdown pages that are linked to are incomplete or weren't revisited after implementation.
+
 
 ## TODO
 
