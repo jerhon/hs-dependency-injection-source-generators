@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.CodeAnalysis;
 
 
 namespace Honlsoft.DependencyInjection.SourceGenerators;
-
-
 
 [Generator]
 public class FactoryGenerator : ISourceGenerator {
@@ -26,11 +20,13 @@ public class FactoryGenerator : ISourceGenerator {
     
     public void Execute(GeneratorExecutionContext context) {
 
-        var reciever = context.SyntaxContextReceiver as FactorySyntaxReceiver;
+        var receiver = context.SyntaxContextReceiver as FactorySyntaxReceiver;
         var factoryCodeTemplate = new FactoryCodeTemplate();
         
+        context.AddSource(typeof(FactoryGenerator).FullName + ".g.cs", "// V1");
+        
         try {
-            foreach (var constructorInfo in reciever.ConstructorInfo) {
+            foreach (var constructorInfo in receiver.Result) {
                 context.AddSource($"{constructorInfo.Namespace}.I{constructorInfo.ClassName}Factory.g.cs", factoryCodeTemplate.GetInterfaceSource(constructorInfo));
                 context.AddSource($"{constructorInfo.Namespace}.{constructorInfo.ClassName}Factory.g.cs", factoryCodeTemplate.GetImplementationSource(constructorInfo));
             }
