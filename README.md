@@ -4,6 +4,8 @@ This is a project to test out creating a source generator(s) in Roslyn.
 It's a WIP and more for personal learning/ideas than for production code right now.
 If I decide to iterate on it further, it may become more stable.
 
+[![.NET](https://github.com/jerhon/hs-dependency-injection-source-generators/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/jerhon/hs-dependency-injection-source-generators/actions/workflows/dotnet.yml)
+
 ## Constructor Source Generator
 
 Decorate a public partial class with the `[Inject]` attribute on fields to create a constructor which will expose them.
@@ -135,6 +137,9 @@ The intent is that every time execute is run, it should not share state in the c
 
 ### ISyntaxReciever vs ISyntaxContextReceiver
 
+ISyntaxReceiver = just gets the syntax nodes
+
+ISyntaxContextReceiver = gets the syntax nodes along with the semantic model
 
 ### Bad Documentation
 
