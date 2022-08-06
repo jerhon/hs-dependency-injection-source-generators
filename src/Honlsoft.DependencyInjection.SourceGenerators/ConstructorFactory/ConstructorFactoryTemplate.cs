@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory.Domain;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators; 
+namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory; 
 
-public class FactoryCodeTemplate {
-    
-    
+
+/// <summary>
+/// Generates the source code for the Constructor Factory from a template. 
+/// </summary>
+public class ConstructorFactoryCodeTemplate {
     
     public string GetInterfaceSource(FactoryConstructorInfo ci) {
 

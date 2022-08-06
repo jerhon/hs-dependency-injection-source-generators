@@ -1,10 +1,15 @@
 ﻿using System.Linq;
+using Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory.Domain;
+using Honlsoft.DependencyInjection.SourceGenerators.Shared;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators; 
+namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory; 
 
-public class ConstructorInfoMapper {
+/// <summary>
+/// Maps the roslyn syntax and semantic models to the internal types used to generate the constructor info.
+/// </summary>
+public class ConstructorFactoryInfoMapper {
 
     public FactoryConstructorInfo MapConstructorInfo(SyntaxNode syntaxNode, SemanticModel semanticModel) {
         

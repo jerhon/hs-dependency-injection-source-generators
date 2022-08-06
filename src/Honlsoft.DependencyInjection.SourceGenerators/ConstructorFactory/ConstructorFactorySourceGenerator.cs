@@ -1,29 +1,28 @@
 ﻿using System;
 using Microsoft.CodeAnalysis;
 
-
-namespace Honlsoft.DependencyInjection.SourceGenerators;
+namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory;
 
 [Generator]
-public class FactoryGenerator : ISourceGenerator {
+public class ConstructorFactorySourceGenerator : ISourceGenerator {
     
     private static readonly DiagnosticDescriptor GenericError = new DiagnosticDescriptor(id: "HSDISG0000",
-        title: "Couldn't autogenerate factory from constructor",
+        title: "Couldn't autogenerate factories from constructors",
         messageFormat: "Couldn't autogenerate factory {0} {1}",
         category: "Honlsoft.DependencyInjection.SourceGenerators",
         DiagnosticSeverity.Error,
         isEnabledByDefault: true);
     
     public void Initialize(GeneratorInitializationContext context) {
-        context.RegisterForSyntaxNotifications(() => new FactorySyntaxReceiver());
+        context.RegisterForSyntaxNotifications(() => new ConstructorFactorySyntaxReceiver());
     }
     
     public void Execute(GeneratorExecutionContext context) {
 
-        var receiver = context.SyntaxContextReceiver as FactorySyntaxReceiver;
-        var factoryCodeTemplate = new FactoryCodeTemplate();
+        var receiver = context.SyntaxContextReceiver as ConstructorFactorySyntaxReceiver;
+        var factoryCodeTemplate = new ConstructorFactoryCodeTemplate();
         
-        context.AddSource(typeof(FactoryGenerator).FullName + ".g.cs", "// V1");
+        context.AddSource(typeof(ConstructorFactorySourceGenerator).FullName + ".g.cs", "// V1");
         
         try {
             foreach (var constructorInfo in receiver.Result) {

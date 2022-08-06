@@ -1,6 +1,7 @@
 ﻿using System.Reflection.Metadata;
 using System.Text;
 using Honlsoft.DependencyInjection.SourceGenerators.Constructor.Domain;
+using Honlsoft.DependencyInjection.SourceGenerators.Constructor.Templates;
 using Honlsoft.DependencyInjection.SourceGenerators.Shared;
 using Microsoft.CodeAnalysis;
 

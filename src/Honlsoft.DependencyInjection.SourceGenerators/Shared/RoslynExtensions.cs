@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators; 
+namespace Honlsoft.DependencyInjection.SourceGenerators.Shared; 
 
 public static class RoslynUtilities {
     
@@ -37,7 +37,7 @@ public static class RoslynUtilities {
         return null;
     }
     
-    public static bool IsMatchingAttribute(AttributeData attributeData, string ns, string name) {
+    private static bool IsMatchingAttribute(AttributeData attributeData, string ns, string name) {
         
         return attributeData?.AttributeClass?.Name == name &&
                attributeData?.AttributeClass?.ContainingNamespace?.ToString() == ns;

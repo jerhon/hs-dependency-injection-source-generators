@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Linq;
 using Honlsoft.DependencyInjection.SourceGenerators.Constructor.Domain;
+using Honlsoft.DependencyInjection.SourceGenerators.Shared;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 

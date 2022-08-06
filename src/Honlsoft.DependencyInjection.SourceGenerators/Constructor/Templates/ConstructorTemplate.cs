@@ -2,7 +2,7 @@
 using Honlsoft.DependencyInjection.SourceGenerators.Constructor.Domain;
 using Honlsoft.DependencyInjection.SourceGenerators.Shared;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators.Constructor.Roslyn; 
+namespace Honlsoft.DependencyInjection.SourceGenerators.Constructor.Templates; 
 
 public class ConstructorTemplate {
     

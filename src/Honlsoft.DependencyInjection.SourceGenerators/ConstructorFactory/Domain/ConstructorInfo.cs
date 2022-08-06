@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace Honlsoft.DependencyInjection.SourceGenerators; 
+﻿namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory.Domain; 
 
 public class FactoryConstructorInfo {
     
