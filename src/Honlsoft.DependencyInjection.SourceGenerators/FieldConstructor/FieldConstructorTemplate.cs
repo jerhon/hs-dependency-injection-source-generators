@@ -1,10 +1,10 @@
 ﻿using System.Text;
-using Honlsoft.DependencyInjection.SourceGenerators.Constructor.Domain;
+using Honlsoft.DependencyInjection.SourceGenerators.FieldConstructor.Domain;
 using Honlsoft.DependencyInjection.SourceGenerators.Shared;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators.Constructor.Templates; 
+namespace Honlsoft.DependencyInjection.SourceGenerators.FieldConstructor; 
 
-public class ConstructorTemplate {
+public class FieldConstructorTemplate {
     
     public string GetClassSource(ClassInfo classInfo) {
 

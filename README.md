@@ -133,7 +133,7 @@ While I was able to generate a factory, the editing experience in Rider and Visu
 Full builds and rebuilds of the solution would work fine.  However, editing in the project would cause the generated source to be lost and I would start getting errors that the generated factories don't exist.
 
 Reading through this a common problem is having a shared field or property across execution runs: https://github.com/dotnet/roslyn/issues/49249
-The intent is that every time execute is run, it should not share state in the class as it's
+The intent is that every time execute is run, it should not share state in the class as the two can be run out of sequence and/or by multiple threads.
 
 ### ISyntaxReciever vs ISyntaxContextReceiver
 

@@ -1,4 +1,4 @@
-﻿namespace Honlsoft.DependencyInjection.SourceGenerators.Constructor.Domain; 
+﻿namespace Honlsoft.DependencyInjection.SourceGenerators.FieldConstructor.Domain; 
 
 public class ClassInfo {
 

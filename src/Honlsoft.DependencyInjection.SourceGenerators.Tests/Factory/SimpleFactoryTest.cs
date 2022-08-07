@@ -1,9 +1,6 @@
 using Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory;
-using Honlsoft.DependencyInjection.SourceGenerators.Tests.Types;
-using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators.Tests;
+namespace Honlsoft.DependencyInjection.SourceGenerators.Tests.Factory;
 
 public class SimpleFactoryTest {
 

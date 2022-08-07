@@ -1,20 +1,17 @@
-﻿using System.Collections.Concurrent;
-using System.Linq;
-using Honlsoft.DependencyInjection.SourceGenerators.Constructor.Domain;
+﻿using System.Linq;
+using Honlsoft.DependencyInjection.SourceGenerators.FieldConstructor.Domain;
 using Honlsoft.DependencyInjection.SourceGenerators.Shared;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Honlsoft.DependencyInjection.SourceGenerators.Constructor.Roslyn; 
+namespace Honlsoft.DependencyInjection.SourceGenerators.FieldConstructor; 
 
-public class ConstructorSyntaxReceiver : ISyntaxContextReceiver {
-    
-    public ConcurrentBag<ClassInfo> ClassInfos { get; } = new ConcurrentBag<ClassInfo>();
-    
-    public void OnVisitSyntaxNode(GeneratorSyntaxContext context) {
+public class FactoryConstructorClassInfoMapper : ISyntaxMapper<ClassInfo> {
 
+
+    public ClassInfo MapClassInfo(SyntaxNode syntaxNode, SemanticModel semanticModel) {
         // Find all classes with fields with an [Inject] attribute
-        if (context.Node is ClassDeclarationSyntax classDeclaration) {
+        if (syntaxNode is ClassDeclarationSyntax classDeclaration) {
 
             var fields = classDeclaration.Members.OfType<FieldDeclarationSyntax>()
                 .Where(HasInjectAttribute)
@@ -22,7 +19,7 @@ public class ConstructorSyntaxReceiver : ISyntaxContextReceiver {
                 .ToArray();
 
             if (fields.Any()) {
-                var classSymbol = context.SemanticModel.GetDeclaredSymbol(classDeclaration);
+                var classSymbol = semanticModel.GetDeclaredSymbol(classDeclaration);
                 
                 var classInfo = new ClassInfo() {
                     Usings = classDeclaration.GetUsingStatements().Select((us) => us.ToFullString()).ToArray(),
@@ -30,10 +27,12 @@ public class ConstructorSyntaxReceiver : ISyntaxContextReceiver {
                     Fields = fields.ToArray(),
                     Name = classDeclaration.Identifier.ToString()
                 };
-                
-                ClassInfos.Add(classInfo);
+
+                return classInfo;
             }
         }
+
+        return null;
     }
 
     private bool HasInjectAttribute(FieldDeclarationSyntax fieldDeclaration) {
@@ -45,5 +44,8 @@ public class ConstructorSyntaxReceiver : ISyntaxContextReceiver {
             Name = fieldDeclaration.Declaration.Variables.First().Identifier.ToString(),
             Type = fieldDeclaration.Declaration.Type.ToFullString(),
         };
+    }
+    public ClassInfo MapSyntax(SyntaxNode syntaxNode, SemanticModel semanticModel) {
+        return MapClassInfo(syntaxNode, semanticModel);
     }
 }
