@@ -1,7 +1,7 @@
 ﻿namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory.Domain; 
 
 
-public class FactoryParameterInfo {
+public class ConstructorFactoryParameterInfo {
     public string Name { get; set; }
     public string Type { get; set; }
     

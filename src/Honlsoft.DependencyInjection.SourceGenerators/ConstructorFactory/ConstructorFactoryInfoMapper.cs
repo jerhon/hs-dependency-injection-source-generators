@@ -9,9 +9,9 @@ namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory;
 /// <summary>
 /// Maps the roslyn syntax and semantic models to the internal types used to generate the constructor info.
 /// </summary>
-public class ConstructorFactoryInfoMapper {
+public class ConstructorFactoryInfoMapper : ISyntaxMapper<ConstructorFactoryInfo> {
 
-    public FactoryConstructorInfo MapConstructorInfo(SyntaxNode syntaxNode, SemanticModel semanticModel) {
+    public ConstructorFactoryInfo MapConstructorInfo(SyntaxNode syntaxNode, SemanticModel semanticModel) {
         
         // TODO: Add validation
         // * Don't support nested namespaces / usings, throw an error for those
@@ -33,7 +33,7 @@ public class ConstructorFactoryInfoMapper {
             // This will get us to an an initial look, we will narrow it down below
             var parameters = constructor.ParameterList.Parameters.Select((p) =>  MapParameterInfo(semanticModel, p));
             
-            return new FactoryConstructorInfo {
+            return new ConstructorFactoryInfo {
                 ClassName = constructor.Identifier.Text, 
                 Parameters = parameters.ToArray(),
                 Namespace = classSymbol.ContainingNamespace.ToString(),
@@ -45,11 +45,11 @@ public class ConstructorFactoryInfoMapper {
     }
 
 
-    private FactoryParameterInfo MapParameterInfo(SemanticModel semanticModel, ParameterSyntax parameter) {
+    private ConstructorFactoryParameterInfo MapParameterInfo(SemanticModel semanticModel, ParameterSyntax parameter) {
 
         var parameterSymbol = semanticModel.GetDeclaredSymbol(parameter) as IParameterSymbol;
 
-        return new FactoryParameterInfo {
+        return new ConstructorFactoryParameterInfo() {
             Name = parameter.Identifier.Text,
             Type = parameter.Type?.GetText()?.ToString(),
             Injected = parameterSymbol?.GetAttributes().HasAttribute(typeof(InjectAttribute)) ?? false
@@ -69,4 +69,7 @@ public class ConstructorFactoryInfoMapper {
         return constructor.AttributeLists.HasAttribute("Factory");
     }
 
+    public ConstructorFactoryInfo MapSyntax(SyntaxNode syntaxNode, SemanticModel semanticModel) {
+        return MapConstructorInfo(syntaxNode, semanticModel);
+    }
 }

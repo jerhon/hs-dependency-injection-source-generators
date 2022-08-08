@@ -11,7 +11,7 @@ namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory;
 /// </summary>
 public class ConstructorFactoryCodeTemplate {
     
-    public string GetInterfaceSource(FactoryConstructorInfo ci) {
+    public string GetInterfaceSource(ConstructorFactoryInfo ci) {
 
         var parameterList = SourcifyParameterLists( ci.Parameters.Where((p) => !p.Injected));
         StringBuilder sb = new StringBuilder();
@@ -33,7 +33,7 @@ public class ConstructorFactoryCodeTemplate {
         return sb.ToString();
     }
 
-    public string GetImplementationSource(FactoryConstructorInfo ci) {
+    public string GetImplementationSource(ConstructorFactoryInfo ci) {
         
         var injectableParameterList = SourcifyParameterLists( ci.Parameters.Where((p) => p.Injected));
         var nonInjectableParameterList = SourcifyParameterLists( ci.Parameters.Where((p) => !p.Injected));
@@ -85,7 +85,7 @@ public class ConstructorFactoryCodeTemplate {
         
     }
 
-    private string SourcifyParameterLists(IEnumerable<FactoryParameterInfo> parameters) {
+    private string SourcifyParameterLists(IEnumerable<ConstructorFactoryParameterInfo> parameters) {
         return string.Join(", ", parameters.Select((p) => $"{GetFullyTypedName(p.TypeNamespace, p.Type)} {p.Name}"));
     }
 

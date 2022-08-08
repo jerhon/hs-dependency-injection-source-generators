@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory.Domain;
 using Microsoft.CodeAnalysis;
 
 namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory;
@@ -13,19 +15,20 @@ public class ConstructorFactorySourceGenerator : ISourceGenerator {
         DiagnosticSeverity.Error,
         isEnabledByDefault: true);
     
+    
     public void Initialize(GeneratorInitializationContext context) {
-        context.RegisterForSyntaxNotifications(() => new ConstructorFactorySyntaxReceiver());
+        context.RegisterForSyntaxNotifications(() => new SyntaxCollector<ConstructorFactoryInfo>(new ConstructorFactoryInfoMapper()));
     }
     
     public void Execute(GeneratorExecutionContext context) {
 
-        var receiver = context.SyntaxContextReceiver as ConstructorFactorySyntaxReceiver;
+        var receiver = context.SyntaxContextReceiver as SyntaxCollector<ConstructorFactoryInfo>;
         var factoryCodeTemplate = new ConstructorFactoryCodeTemplate();
         
         context.AddSource(typeof(ConstructorFactorySourceGenerator).FullName + ".g.cs", "// V1");
         
         try {
-            foreach (var constructorInfo in receiver.Result) {
+            foreach (var constructorInfo in receiver.Items) {
                 context.AddSource($"{constructorInfo.Namespace}.I{constructorInfo.ClassName}Factory.g.cs", factoryCodeTemplate.GetInterfaceSource(constructorInfo));
                 context.AddSource($"{constructorInfo.Namespace}.{constructorInfo.ClassName}Factory.g.cs", factoryCodeTemplate.GetImplementationSource(constructorInfo));
             }
