@@ -8,7 +8,7 @@ namespace Honlsoft.DependencyInjection.SourceGenerators.ConstructorFactory;
 [Generator]
 public class ConstructorFactorySourceGenerator : ISourceGenerator {
     
-    private static readonly DiagnosticDescriptor GenericError = new DiagnosticDescriptor(id: "HSDISG0000",
+    private static readonly DiagnosticDescriptor GenericError = new DiagnosticDescriptor(id: "HS1000",
         title: "Couldn't autogenerate factories from constructors",
         messageFormat: "Couldn't autogenerate factory {0} {1}",
         category: "Honlsoft.DependencyInjection.SourceGenerators",

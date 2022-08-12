@@ -1,5 +1,7 @@
-﻿namespace Honlsoft.DependencyInjection.SourceGenerators.Interface; 
+﻿using System;
 
-public class InterfaceAttribute {
+namespace Honlsoft.DependencyInjection.SourceGenerators.Interface; 
+
+public class InterfaceAttribute : Attribute {
     
-}
+}  

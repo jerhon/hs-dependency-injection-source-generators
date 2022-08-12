@@ -77,13 +77,14 @@ public class InstanceClass {
 I want to use the Factory pattern in order to create a class which has some constructor parameters which are dependencies that would be injected by say an DI container, and the others are not available until runtime.
 
 
-## Interface Source Generator (TBD)
+## Interface Source Generator
 
-This is TBD, but would generate an interface based off the class.  Useful for DI and unit testing.
+Generates an interface for a class.
+This is useful for reducing boilerplate code in situations where the interface is only used for mocking.
 
 ```csharp
 [Interface]
-public class MyClass {
+public partial class MyClass {
 
     [Interface]
     public void Method() {
@@ -98,12 +99,18 @@ public class MyClass {
 
 ```csharp
 public interface IMyClass {
-    public void Method();
-    public void Method2();
+    void Method();
+    void Method2();
 }
+public partial MyClass : IMyClass {}
 ```
 
 Can then DI in the interface, and use it for mocking while unit testing.
+
+
+```csharp
+services.AddSingleton<IMyClass, MyClass>();
+```
 
 ## Combine `[Inject]` and `[Factory]` at the class level (TBD)
 
