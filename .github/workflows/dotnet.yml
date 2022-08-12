@@ -41,5 +41,5 @@ jobs:
     - name: pack nuget packages
       run: dotnet pack --output nupkgs --no-restore --no-build /p:PackageVersion=$VERSION
     - name: upload nuget package
-      if: env.IS_TAG && startsWith(github.ref, 'refs/tags/v') }}
+      if: env.IS_TAG && startsWith(github.ref, 'refs/tags/v')
       run: dotnet nuget push nupkgs/*.nupkg -k $NUGET_DEPLOY_KEY
