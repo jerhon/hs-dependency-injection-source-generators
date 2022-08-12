@@ -3,12 +3,12 @@ name: .NET Build, Test, and Publish Nuget Package
 on:
   push:
     branches: 
-      - "*"
+      - "**"
     tags: 
       - "v[0-9]+.[0-9]+.[0-9]+"
   pull_request:
     branches:
-      - "*"
+      - "**"
 env:
   IS_TAG: ${{ github.ref_type == "tag" }}
   VERSION: 1.0.0
