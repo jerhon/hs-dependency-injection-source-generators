@@ -3,6 +3,16 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>10.0</LangVersion>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Title>Honlsoft Dependency Injection Source Generators</Title>
+        <Authors>Honlsoft</Authors>
+        <Description>Provides several source generators to reduce boilerplate code needed with dependency injection in .NET.</Description>
+        <Copyright>Jeremy Honl</Copyright>
+        <PackageProjectUrl>https://github.com/jerhon/hs-dependency-injection-source-generators</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/jerhon/hs-dependency-injection-source-generators</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
